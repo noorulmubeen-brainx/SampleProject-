@@ -20,6 +20,7 @@ android {
     buildFeatures {
         dataBinding true
         viewBinding true
+        android.defaultConfig.vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
         release {
