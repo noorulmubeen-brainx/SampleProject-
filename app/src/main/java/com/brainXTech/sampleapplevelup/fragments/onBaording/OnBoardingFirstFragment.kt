@@ -23,24 +23,24 @@ class OnBoardingFirstFragment(private val currentIndex:Int) : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        resetDotsSource()
-        setSelectedDot()
+//        resetDotsSource()
+//        setSelectedDot()
 
 
     }
 
-    private fun setSelectedDot() {
-        when(currentIndex){
-            0-> onBoardingBinding.firstDot.setImageResource(R.drawable.ic_selected_bottom_point)
-            1->onBoardingBinding.secondDot.setImageResource(R.drawable.ic_selected_bottom_point)
-            2->onBoardingBinding.thirdDot.setImageResource(R.drawable.ic_selected_bottom_point)
-        }
-    }
-
-    private fun resetDotsSource() {
-        onBoardingBinding.firstDot.setImageResource(R.drawable.ic_not_selected_bottom_point)
-        onBoardingBinding.secondDot.setImageResource(R.drawable.ic_not_selected_bottom_point)
-        onBoardingBinding.thirdDot.setImageResource(R.drawable.ic_not_selected_bottom_point)
-    }
+//    private fun setSelectedDot() {
+//        when(currentIndex){
+//            0-> onBoardingBinding.firstDot.setImageResource(R.drawable.ic_selected_bottom_point)
+//            1->onBoardingBinding.secondDot.setImageResource(R.drawable.ic_selected_bottom_point)
+//            2->onBoardingBinding.thirdDot.setImageResource(R.drawable.ic_selected_bottom_point)
+//        }
+//    }
+//
+//    private fun resetDotsSource() {
+//        onBoardingBinding.firstDot.setImageResource(R.drawable.ic_not_selected_bottom_point)
+//        onBoardingBinding.secondDot.setImageResource(R.drawable.ic_not_selected_bottom_point)
+//        onBoardingBinding.thirdDot.setImageResource(R.drawable.ic_not_selected_bottom_point)
+//    }
 
 }

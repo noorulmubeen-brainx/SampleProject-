@@ -25,51 +25,55 @@ class OnBoardingActivity : FragmentActivity() {
         super.onCreate(savedInstanceState)
         onBoardingBinding=DataBindingUtil.setContentView(this,R.layout.activity_on_boarding)
         viewPager2=onBoardingBinding.onBoardingViewPager
-        onBoardingTabLayout=onBoardingBinding.onBoardingTab
         pagerAdapter=OnBoardingPageAdapter(this)
         viewPager2.adapter=pagerAdapter
-        TabLayoutMediator(onBoardingTabLayout, viewPager2) { tab, position ->
-//            tab.setCustomView(R.layout.on_boarding_bottom_dots_unfilled)
-//            if(tab.isSelected){
-//                tab.setCustomView(R.layout.on_boarding_bottom_dots_filled)
-//            }
-        }.attach()
-        onBoardingTabLayout.addOnTabSelectedListener(pagerTabListener)
+        viewPager2.registerOnPageChangeCallback(onPageChange)
+    }
+    fun setSelectedDot(position: Int) {
+        when(position){
+            0-> onBoardingBinding.firstDot.setImageResource(R.drawable.ic_selected_bottom_point)
+            1->onBoardingBinding.secondDot.setImageResource(R.drawable.ic_selected_bottom_point)
+            2->onBoardingBinding.thirdDot.setImageResource(R.drawable.ic_selected_bottom_point)
+        }
+    }
 
-//        pagerAdapter.on
+    fun resetDotsSource(position: Int) {
+        onBoardingBinding.firstDot.setImageResource(R.drawable.ic_not_selected_bottom_point)
+        onBoardingBinding.secondDot.setImageResource(R.drawable.ic_not_selected_bottom_point)
+        onBoardingBinding.thirdDot.setImageResource(R.drawable.ic_not_selected_bottom_point)
+        setSelectedDot(position)
+    }
+
+     onPageChange : ViewPager2.OnPageChangeCallback() {
+        override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+            super.onPageScrolled(position, positionOffset, positionOffsetPixels)
+        }
+
+        override fun onPageSelected(position: Int) {
+            super.onPageSelected(position)
+            resetDotsSource(position)
+
+        }
+        override fun onPageScrollStateChanged(state: Int) {
+            super.onPageScrollStateChanged(state)
+        }
 
     }
 
-/*
-//    private fun setSelectedDot() {
-//        when(currentIndex){
-//            0-> onBoardingBinding.firstDot.setImageResource(R.drawable.ic_selected_bottom_point)
-//            1->onBoardingBinding.secondDot.setImageResource(R.drawable.ic_selected_bottom_point)
-//            2->onBoardingBinding.thirdDot.setImageResource(R.drawable.ic_selected_bottom_point)
-//        }
+}
+
+
+//
+//object pagerTabListener : TabLayout.OnTabSelectedListener {
+//    override fun onTabSelected(tab: TabLayout.Tab?) {
+//        tab?.customView?.id?.setImage
 //    }
 //
-//    private fun resetDotsSource() {
-//        onBoardingBinding.firstDot.setImageResource(R.drawable.ic_not_selected_bottom_point)
-//        onBoardingBinding.secondDot.setImageResource(R.drawable.ic_not_selected_bottom_point)
-//        onBoardingBinding.thirdDot.setImageResource(R.drawable.ic_not_selected_bottom_point)
-//        setSelectedDot()
+//    override fun onTabUnselected(tab: TabLayout.Tab?) {
+//        tab?.setCustomView(R.layout.on_boarding_bottom_dots_unfilled)
 //    }
-*/
-}
-
-object pagerTabListener : TabLayout.OnTabSelectedListener {
-    override fun onTabSelected(tab: TabLayout.Tab?) {
-        tab?.setCustomView(R.layout.on_boarding_bottom_dots_filled)
-//        TODO("Not yet implemented")
-    }
-
-    override fun onTabUnselected(tab: TabLayout.Tab?) {
-//        TODO("Not yet implemented")
-        tab?.setCustomView(R.layout.on_boarding_bottom_dots_unfilled)
-    }
-
-    override fun onTabReselected(tab: TabLayout.Tab?) {
-//        TODO("Not yet implemented")
-    }
-}
+//
+//    override fun onTabReselected(tab: TabLayout.Tab?) {
+////        TODO("Not yet implemented")
+//    }
+//}
