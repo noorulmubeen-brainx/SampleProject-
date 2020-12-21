@@ -8,4 +8,9 @@
     <string name="welcome">Welcome to main Screen</string>
     <string name="unfilled_botom_dot">unfilled botom Dot</string>
     <string name="filled_dot">filled dot</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="login">LOGIN</string>
+    <string name="log_in">Log In</string>
+    <string name="email">Email</string>
+    <string name="password">password</string>
 </resources>

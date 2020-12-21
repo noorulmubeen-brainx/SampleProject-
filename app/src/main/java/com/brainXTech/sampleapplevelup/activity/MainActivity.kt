@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.brainXTech.sampleapplevelup.R
 import com.brainXTech.sampleapplevelup.Utils.SharedPreferenceHelper
+import com.brainXTech.sampleapplevelup.activity.login.LoginActivity
 import com.brainXTech.sampleapplevelup.activity.onBoarding.OnBoardingActivity
 
 class MainActivity : AppCompatActivity() {
@@ -21,12 +22,18 @@ class MainActivity : AppCompatActivity() {
 //            TODO: Move to OnBoarding screens
         }
         else{
+            moveToLogin()
 //            TODO: Check the authentication status of current user
 //            TODO: if yes move to main screen else go to signIn screen
 
         }
 
 
+    }
+
+    private fun moveToLogin() {
+        val value = Intent (this, LoginActivity::class.java)
+        startActivity(value)
     }
 
     private fun moveToOnBoarding() {

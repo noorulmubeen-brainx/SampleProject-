@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SampleAppLevelUp">
-        <activity android:name=".activity.onBoarding.OnBoardingActivity"></activity>
+        <activity android:name=".activity.login.LoginActivity"></activity>
+        <activity android:name=".activity.onBoarding.OnBoardingActivity" />
         <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
