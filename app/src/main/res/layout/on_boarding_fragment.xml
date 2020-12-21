@@ -15,11 +15,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="116dp"
             android:background="@drawable/on_board_first_screen_image"
-            android:outlineAmbientShadowColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.493"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="@string/first_onboarding_heading" />
 
         <TextView
             android:id="@+id/headingText"

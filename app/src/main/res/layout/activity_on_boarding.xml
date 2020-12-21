@@ -27,7 +27,8 @@
             app:layout_constraintBottom_toTopOf="@id/skipButton"
             app:layout_constraintEnd_toStartOf="@+id/secondDot"
             app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            android:contentDescription="@string/first_onboarding_heading" />
 
         <ImageView
             android:id="@+id/secondDot"
@@ -38,7 +39,8 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toTopOf="@id/skipButton"
-            android:background= "@drawable/ic_not_selected_bottom_point" />
+            android:background= "@drawable/ic_not_selected_bottom_point"
+            android:contentDescription="@string/second_onboarding_screen_heading" />
 
         <ImageView
             android:id="@+id/thirdDot"
@@ -49,7 +51,8 @@
             app:layout_constraintBottom_toTopOf="@id/skipButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@id/secondDot" />
+            app:layout_constraintStart_toEndOf="@id/secondDot"
+            android:contentDescription="@string/third_on_boarding_heading" />
 
         <Button
             android:id="@+id/skipButton"

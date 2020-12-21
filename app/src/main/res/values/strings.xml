@@ -6,4 +6,6 @@
     <string name="get_started">Get Started</string>
     <string name="demo_text">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy</string>
     <string name="welcome">Welcome to main Screen</string>
+    <string name="unfilled_botom_dot">unfilled botom Dot</string>
+    <string name="filled_dot">filled dot</string>
 </resources>
