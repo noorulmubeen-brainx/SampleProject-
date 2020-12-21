@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Sample App Level Up</string>
+    <string name="first_onboarding_heading">DO TODAY</string>
+    <string name="second_onboarding_screen_heading">PLAN</string>
+    <string name="third_on_boarding_heading">TRACK IT</string>
+    <string name="get_started">Get Started</string>
+    <string name="demo_text">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy</string>
 </resources>

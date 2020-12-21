@@ -13,7 +13,7 @@
             android:id="@+id/imageView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="52dp"
+            android:layout_marginTop="116dp"
             android:background="@drawable/on_board_first_screen_image"
             android:outlineAmbientShadowColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
@@ -22,12 +22,12 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/headingText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="36dp"
             android:fontFamily="@font/geometos_neue"
-            android:text="DO TODAY"
+            android:text="@string/first_onboarding_heading"
             android:textColor="@color/black"
             android:textSize="22sp"
             android:textStyle="bold"
@@ -42,12 +42,12 @@
             android:layout_marginTop="18dp"
             android:gravity="center"
             android:paddingHorizontal="40dp"
-            android:text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy"
+            android:text="@string/demo_text"
             android:textColor="@color/secondary_text_on_boarding"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
+            app:layout_constraintTop_toBottomOf="@+id/headingText" />
 
 
 

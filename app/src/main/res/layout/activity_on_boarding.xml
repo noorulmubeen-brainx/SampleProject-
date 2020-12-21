@@ -9,11 +9,11 @@
         android:layout_height="match_parent"
         tools:context=".activity.OnBoardingActivity">
 
-        <androidx.viewpager2.widget.ViewPager2
+        <androidx.viewpager.widget.ViewPager
             android:id="@+id/on_boarding_view_pager"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@id/secondDot"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -22,35 +22,44 @@
             android:id="@+id/firstDot"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.45"
+            app:layout_constraintHorizontal_bias="0.47"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/on_boarding_view_pager"
-            app:srcCompat="@drawable/ic_not_selected_bottom_point" />
+            app:layout_constraintBottom_toTopOf="@id/skipButton"
+           android:background= "@drawable/ic_selected_bottom_point" />
 
         <ImageView
             android:id="@+id/secondDot"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginBottom="40dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.45"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/on_boarding_view_pager"
-            app:srcCompat="@drawable/ic_not_selected_bottom_point" />
+            app:layout_constraintBottom_toTopOf="@id/skipButton"
+            android:background= "@drawable/ic_not_selected_bottom_point" />
 
         <ImageView
             android:id="@+id/thirdDot"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:background="@drawable/ic_not_selected_bottom_point"
+            app:layout_constraintBottom_toTopOf="@id/skipButton"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.45"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/on_boarding_view_pager"
-            app:srcCompat="@drawable/ic_not_selected_bottom_point" />
+            app:layout_constraintHorizontal_bias="0.08"
+            app:layout_constraintStart_toStartOf="@id/secondDot" />
 
-
+        <Button
+            android:id="@+id/skipButton"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginBottom="20dp"
+            android:layout_width="match_parent"
+            android:text="@string/get_started"
+            android:background="@color/app_primary"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

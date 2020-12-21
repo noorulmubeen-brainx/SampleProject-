@@ -1,79 +1,95 @@
 package com.brainXTech.sampleapplevelup.activity
 
 import android.os.Bundle
+import android.view.View
+import android.widget.ImageView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentActivity
+import androidx.viewpager.widget.ViewPager
 import androidx.viewpager2.widget.ViewPager2
 import com.brainXTech.sampleapplevelup.R
 import com.brainXTech.sampleapplevelup.adapters.OnBoardingPageAdapter
 import com.brainXTech.sampleapplevelup.databinding.ActivityOnBoardingBinding
 import com.google.android.material.tabs.TabLayout
+import kotlinx.android.synthetic.main.on_boarding_bottom_dots_unfilled.*
 import com.google.android.material.tabs.TabLayoutMediator
 
-class OnBoardingActivity : FragmentActivity() {
+class OnBoardingActivity : FragmentActivity(),View.OnClickListener, ViewPager.OnPageChangeListener{
     private lateinit var onBoardingBinding: ActivityOnBoardingBinding
-    private lateinit var viewPager2: ViewPager2
+    private lateinit var viewPager2: ViewPager
     private lateinit var pagerAdapter:OnBoardingPageAdapter
-    private lateinit var onBoardingTabLayout: TabLayout
+    private  lateinit var firstDot:ImageView
+    private  lateinit var secondDot:ImageView
+    private  lateinit var thirdDot:ImageView
 
 
-
-
-
+    override fun onClick(v: View?) {
+//        TODO("Not yet implemented")
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         onBoardingBinding=DataBindingUtil.setContentView(this,R.layout.activity_on_boarding)
         viewPager2=onBoardingBinding.onBoardingViewPager
-        pagerAdapter=OnBoardingPageAdapter(this)
+        pagerAdapter=OnBoardingPageAdapter(supportFragmentManager)
         viewPager2.adapter=pagerAdapter
-        viewPager2.registerOnPageChangeCallback(onPageChange)
+        firstDot=onBoardingBinding.firstDot
+        secondDot=onBoardingBinding.secondDot
+        thirdDot=onBoardingBinding.thirdDot
+        viewPager2.addOnPageChangeListener(this)
+
     }
     fun setSelectedDot(position: Int) {
         when(position){
-            0-> onBoardingBinding.firstDot.setImageResource(R.drawable.ic_selected_bottom_point)
-            1->onBoardingBinding.secondDot.setImageResource(R.drawable.ic_selected_bottom_point)
-            2->onBoardingBinding.thirdDot.setImageResource(R.drawable.ic_selected_bottom_point)
+            0-> firstDot.setBackgroundResource(R.drawable.ic_selected_bottom_point)
+            1->secondDot.setBackgroundResource(R.drawable.ic_selected_bottom_point)
+            2->thirdDot.setBackgroundResource(R.drawable.ic_selected_bottom_point)
         }
     }
 
     fun resetDotsSource(position: Int) {
-        onBoardingBinding.firstDot.setImageResource(R.drawable.ic_not_selected_bottom_point)
-        onBoardingBinding.secondDot.setImageResource(R.drawable.ic_not_selected_bottom_point)
-        onBoardingBinding.thirdDot.setImageResource(R.drawable.ic_not_selected_bottom_point)
+        onBoardingBinding.firstDot.setBackgroundResource(R.drawable.ic_not_selected_bottom_point)
+        onBoardingBinding.secondDot.setBackgroundResource(R.drawable.ic_not_selected_bottom_point)
+        onBoardingBinding.thirdDot.setBackgroundResource(R.drawable.ic_not_selected_bottom_point)
         setSelectedDot(position)
     }
 
-     onPageChange : ViewPager2.OnPageChangeCallback() {
+     private val onPageChange=object : ViewPager2.OnPageChangeCallback() {
         override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
             super.onPageScrolled(position, positionOffset, positionOffsetPixels)
         }
-
         override fun onPageSelected(position: Int) {
             super.onPageSelected(position)
-            resetDotsSource(position)
+            firstDot.setImageResource(R.drawable.ic_not_selected_bottom_point)
+            secondDot.setImageResource(R.drawable.ic_not_selected_bottom_point)
+            thirdDot.setImageResource(R.drawable.ic_not_selected_bottom_point)
+//            resetDotsSource(position)
+            when(position){
+                0-> firstDot.setImageResource(R.drawable.ic_selected_bottom_point)
+                1->secondDot.setImageResource(R.drawable.ic_selected_bottom_point)
+                2->thirdDot.setImageResource(R.drawable.ic_selected_bottom_point)
+            }
 
         }
         override fun onPageScrollStateChanged(state: Int) {
             super.onPageScrollStateChanged(state)
         }
+    }
 
+    override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+//        TODO("Not yet implemented")
+//        super.onPage(position, positionOffset, positionOffsetPixels)
+    }
+
+    override fun onPageSelected(position: Int) {
+        resetDotsSource(position)
+
+//        TODO("Not yet implemented")
+    }
+
+    override fun onPageScrollStateChanged(state: Int) {
+//        TODO("Not yet implemented")
     }
 
 }
 
-
-//
-//object pagerTabListener : TabLayout.OnTabSelectedListener {
-//    override fun onTabSelected(tab: TabLayout.Tab?) {
-//        tab?.customView?.id?.setImage
-//    }
-//
-//    override fun onTabUnselected(tab: TabLayout.Tab?) {
-//        tab?.setCustomView(R.layout.on_boarding_bottom_dots_unfilled)
-//    }
-//
-//    override fun onTabReselected(tab: TabLayout.Tab?) {
-////        TODO("Not yet implemented")
-//    }
-//}

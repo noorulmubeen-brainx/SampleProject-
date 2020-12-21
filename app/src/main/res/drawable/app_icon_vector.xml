@@ -15,7 +15,7 @@
   <path
       android:pathData="M98.553,14.703l-16.967,35.184h-1.923l-16.967,-35.184h9.806l8.123,17.736 8.075,-17.736Z"
       android:fillColor="#1f69ff"/>
-  <path
+  <ic_selected_bottom_point
       android:pathData="M112.015,35.614h16.1L128.115,28.257L103.221,28.257v21.627h26.913L130.134,42.057h-18.118ZM103.22,14.7v7.84h26.913v-7.84Z"
       android:fillColor="#1f69ff"/>
   <path

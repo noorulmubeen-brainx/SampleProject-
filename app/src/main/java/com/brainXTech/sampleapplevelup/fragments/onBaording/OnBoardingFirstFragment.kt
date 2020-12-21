@@ -23,24 +23,33 @@ class OnBoardingFirstFragment(private val currentIndex:Int) : Fragment() {
 
     override fun onStart() {
         super.onStart()
+
+        when(currentIndex){
+            0->setFirstOnBoarding()
+            1->setSecondOnBoarding()
+            2->setThirdOnBoarding()
+        }
 //        resetDotsSource()
 //        setSelectedDot()
 
 
     }
 
-//    private fun setSelectedDot() {
-//        when(currentIndex){
-//            0-> onBoardingBinding.firstDot.setImageResource(R.drawable.ic_selected_bottom_point)
-//            1->onBoardingBinding.secondDot.setImageResource(R.drawable.ic_selected_bottom_point)
-//            2->onBoardingBinding.thirdDot.setImageResource(R.drawable.ic_selected_bottom_point)
-//        }
-//    }
-//
-//    private fun resetDotsSource() {
-//        onBoardingBinding.firstDot.setImageResource(R.drawable.ic_not_selected_bottom_point)
-//        onBoardingBinding.secondDot.setImageResource(R.drawable.ic_not_selected_bottom_point)
-//        onBoardingBinding.thirdDot.setImageResource(R.drawable.ic_not_selected_bottom_point)
-//    }
+    private fun setThirdOnBoarding() {
+//        TODO("Not yet implemented")
+        onBoardingBinding.imageView.setBackgroundResource(R.drawable.ic_third_onboarding_fragment)
+        onBoardingBinding.headingText.text=getString(R.string.third_on_boarding_heading)
+    }
 
+    private fun setSecondOnBoarding() {
+//        TODO("Not yet implemented")
+        onBoardingBinding.imageView.setBackgroundResource(R.drawable.ic_second_onboarding_fragment)
+        onBoardingBinding.headingText.text=getString(R.string.second_onboarding_screen_heading)
+    }
+
+    private fun setFirstOnBoarding() {
+        onBoardingBinding.imageView.setBackgroundResource(R.drawable.on_board_first_screen_image)
+        onBoardingBinding.headingText.text=getString(R.string.first_onboarding_heading)
+//        TODO("Not yet implemented")
+    }
 }
