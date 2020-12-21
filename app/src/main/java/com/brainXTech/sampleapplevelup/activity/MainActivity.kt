@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.brainXTech.sampleapplevelup.R
 import com.brainXTech.sampleapplevelup.Utils.SharedPreferenceHelper
+import com.brainXTech.sampleapplevelup.activity.onBoarding.OnBoardingActivity
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,7 +30,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun moveToOnBoarding() {
-        val value = Intent (this,OnBoardingActivity::class.java)
+        val value = Intent (this, OnBoardingActivity::class.java)
         startActivity(value)
     }
 }
