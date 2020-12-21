@@ -22,17 +22,18 @@
             android:id="@+id/firstDot"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.47"
-            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginBottom="28dp"
+            android:background="@drawable/ic_selected_bottom_point"
             app:layout_constraintBottom_toTopOf="@id/skipButton"
-           android:background= "@drawable/ic_selected_bottom_point" />
+            app:layout_constraintEnd_toStartOf="@+id/secondDot"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <ImageView
             android:id="@+id/secondDot"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="40dp"
+            android:layout_marginBottom="28dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -43,11 +44,12 @@
             android:id="@+id/thirdDot"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="28dp"
             android:background="@drawable/ic_not_selected_bottom_point"
             app:layout_constraintBottom_toTopOf="@id/skipButton"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.08"
-            app:layout_constraintStart_toStartOf="@id/secondDot" />
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@id/secondDot" />
 
         <Button
             android:id="@+id/skipButton"
@@ -55,7 +57,8 @@
             android:layout_marginBottom="20dp"
             android:layout_width="match_parent"
             android:text="@string/get_started"
-            android:background="@color/app_primary"
+            android:textColor="@color/white"
+            android:background="@drawable/button_round_corner"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
