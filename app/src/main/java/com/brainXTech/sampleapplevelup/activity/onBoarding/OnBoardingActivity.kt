@@ -13,6 +13,7 @@ import com.brainXTech.sampleapplevelup.Utils.SharedPreferenceHelper
 import com.brainXTech.sampleapplevelup.activity.MainActivity
 import com.brainXTech.sampleapplevelup.adapters.OnBoardingPageAdapter
 import com.brainXTech.sampleapplevelup.databinding.ActivityOnBoardingBinding
+import kotlinx.android.synthetic.main.activity_on_boarding.*
 
 class OnBoardingActivity : FragmentActivity(), View.OnClickListener,
     ViewPager.OnPageChangeListener {
@@ -20,11 +21,7 @@ class OnBoardingActivity : FragmentActivity(), View.OnClickListener,
     private lateinit var onBoardingBinding: ActivityOnBoardingBinding
     private lateinit var viewPager2: ViewPager
     private lateinit var pagerAdapter: OnBoardingPageAdapter
-    private lateinit var firstDot: ImageView
     private lateinit var sharedPreference: SharedPreferenceHelper
-    private lateinit var secondDot: ImageView
-    private lateinit var thirdDot: ImageView
-    private lateinit var skipButton: Button
 // endregion
 
 
@@ -97,10 +94,6 @@ class OnBoardingActivity : FragmentActivity(), View.OnClickListener,
         viewPager2 = onBoardingBinding.onBoardingViewPager
         pagerAdapter = OnBoardingPageAdapter(supportFragmentManager)
         viewPager2.adapter = pagerAdapter
-        firstDot = onBoardingBinding.firstDot
-        secondDot = onBoardingBinding.secondDot
-        thirdDot = onBoardingBinding.thirdDot
-        skipButton = onBoardingBinding.skipButton
 
     }
 
@@ -113,9 +106,9 @@ class OnBoardingActivity : FragmentActivity(), View.OnClickListener,
     }
 
     private fun resetDotsSource(position: Int) {
-        onBoardingBinding.firstDot.setBackgroundResource(R.drawable.ic_not_selected_bottom_point)
-        onBoardingBinding.secondDot.setBackgroundResource(R.drawable.ic_not_selected_bottom_point)
-        onBoardingBinding.thirdDot.setBackgroundResource(R.drawable.ic_not_selected_bottom_point)
+        firstDot.setBackgroundResource(R.drawable.ic_not_selected_bottom_point)
+        secondDot.setBackgroundResource(R.drawable.ic_not_selected_bottom_point)
+        thirdDot.setBackgroundResource(R.drawable.ic_not_selected_bottom_point)
         setSelectedDot(position)
     }
 // endregion

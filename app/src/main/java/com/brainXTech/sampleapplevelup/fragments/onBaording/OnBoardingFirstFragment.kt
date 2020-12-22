@@ -10,12 +10,11 @@ import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import com.brainXTech.sampleapplevelup.R
 import com.brainXTech.sampleapplevelup.databinding.OnBoardingFragmentBinding
+import kotlinx.android.synthetic.main.on_boarding_fragment.*
 
 class OnBoardingFirstFragment(private val currentIndex: Int) : Fragment() {
     //    region properties
     private lateinit var onBoardingBinding: OnBoardingFragmentBinding
-    private lateinit var imageView: ImageView
-    private lateinit var headingText: TextView
 //endregion
 
 
@@ -26,8 +25,6 @@ class OnBoardingFirstFragment(private val currentIndex: Int) : Fragment() {
     ): View {
         onBoardingBinding =
             DataBindingUtil.inflate(inflater, R.layout.on_boarding_fragment, container, false)
-        imageView = onBoardingBinding.imageView
-        headingText = onBoardingBinding.headingText
         return onBoardingBinding.root
     }
 
