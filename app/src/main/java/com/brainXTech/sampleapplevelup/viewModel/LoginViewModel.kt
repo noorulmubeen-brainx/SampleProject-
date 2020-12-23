@@ -22,14 +22,18 @@ class LoginViewModel(private val app: Application) : AndroidViewModel(app) {
     val password = MutableLiveData<String>()
     private val apiRequestBody = HashMap<String,Any?>()
     val moveToFirstTimePassword=MutableLiveData<Boolean>()
-    val user=MutableLiveData<User>()
 //    endregion
+//    region private Properties
+    private val sharedPreference= SharedPreferenceHelper()
+//    endregion
+
 //region lifecycle
     init {
         isShowing.value = true
         email.value = ""
         password.value = ""
         loading.value=false
+        sharedPreference.also { it.setSharedPreference(app) }
     }
 
 //    endregion
@@ -48,6 +52,10 @@ class LoginViewModel(private val app: Application) : AndroidViewModel(app) {
 // endregion
 
 //    region private method
+
+    private fun setUserToPreference(user:User){
+        sharedPreference.setUser(user)
+    }
 
     private fun showToastMessage (message:String){
         if (message != "")
@@ -70,7 +78,7 @@ class LoginViewModel(private val app: Application) : AndroidViewModel(app) {
 
     private val signInLister = object : IResponse<User, String> {
         override fun onSuccess(result: User) {
-            user.postValue(result)
+            setUserToPreference(result)
             setLoading(false)
             if(result.firstLogin)
                 moveToFirstTimePassword.postValue(true)

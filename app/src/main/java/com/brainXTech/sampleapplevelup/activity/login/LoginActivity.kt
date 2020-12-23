@@ -22,7 +22,6 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
     //    region properties
     private lateinit var loginBinding: ActivityLoginBinding
     private lateinit var loginViewModel: LoginViewModel
-    private val sharedPreference= SharedPreferenceHelper()
 
 
 //    endregion
@@ -41,15 +40,10 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setBinding()
         setListeners()
-        setSharedPreference()
     }
 //    endRegion
 // region Private method
-    private fun setSharedPreference() {
-        sharedPreference.also {
-            it.setSharedPreference(this)
-        }
-    }
+
 
 
 
@@ -64,18 +58,14 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         loginBinding.lifecycleOwner = this
         loginBinding.viewModel = loginViewModel
         loginViewModel.isShowing.observe(this, showHidePasswordCallBack)
-//        loginViewModel.showToastMessage.observe(this, showToastMessage)
         loginViewModel.moveToFirstTimePassword.observe(this,moveToNextScreen)
         loginViewModel.loading.observe(this,showProgress)
-        loginViewModel.user.observe(this,setUserToPreference)
     }
 
 //    endregion
 
 //    region viewModelObservers
-    private val setUserToPreference=Observer<User>{
-        sharedPreference.setUser(it)
-    }
+
 
 
 
@@ -91,9 +81,9 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
     }
 
 
-    private val showToastMessage = Observer<String> {
-        if (it != "")
-            Toast.makeText(this, it, Toast.LENGTH_LONG).show()
+    fun showToastMessage (message:String) {
+        if (message != "")
+            Toast.makeText(this, message, Toast.LENGTH_LONG).show()
 
     }
 
@@ -112,10 +102,12 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
     }
     private val moveToNextScreen=Observer<Boolean> {
         if(it){
-            val value = Intent (this, FirstTimePasswordActivity::class.java)
-            startActivity(value)
+            showToastMessage(getString(R.string.set_password_first_time))
+//            val value = Intent (this, FirstTimePasswordActivity::class.java)
+//            startActivity(value)
         }
         else{
+            showToastMessage(getString(R.string.no_need_to_set_password))
             val value = Intent (this, MainActivity::class.java)
             startActivity(value)
         }
