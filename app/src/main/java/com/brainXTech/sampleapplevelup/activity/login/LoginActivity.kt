@@ -28,7 +28,6 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
 
     //region Implemented Methods
     override fun onClick(v: View?) {
-//        TODO("Not yet implemented")
         loginViewModel.onClickListener(v)
     }
 
@@ -102,9 +101,8 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
     }
     private val moveToNextScreen=Observer<Boolean> {
         if(it){
-            showToastMessage(getString(R.string.set_password_first_time))
-//            val value = Intent (this, FirstTimePasswordActivity::class.java)
-//            startActivity(value)
+            val value = Intent (this, FirstTimePasswordActivity::class.java)
+            startActivity(value)
         }
         else{
             showToastMessage(getString(R.string.no_need_to_set_password))

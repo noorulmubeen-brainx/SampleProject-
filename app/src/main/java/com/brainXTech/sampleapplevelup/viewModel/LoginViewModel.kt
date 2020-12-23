@@ -12,19 +12,18 @@ import com.brainXTech.sampleapplevelup.Utils.SharedPreferenceHelper
 import com.brainXTech.sampleapplevelup.Utils.isValidEmail
 import com.brainXTech.sampleapplevelup.Utils.isValidPassword
 import com.brainXTech.sampleapplevelup.`interface`.IResponse
+import com.brainXTech.sampleapplevelup.baseClasses.BaseViewModel
 import com.brainXTech.sampleapplevelup.network.UserAPIConnection
 
-class LoginViewModel(private val app: Application) : AndroidViewModel(app) {
+class LoginViewModel(app: Application) : BaseViewModel(app) {
 //    region Mutable values
     val isShowing = MutableLiveData<Boolean>()
-    val loading = MutableLiveData<Boolean>()
     val email = MutableLiveData<String>()
     val password = MutableLiveData<String>()
     private val apiRequestBody = HashMap<String,Any?>()
     val moveToFirstTimePassword=MutableLiveData<Boolean>()
 //    endregion
 //    region private Properties
-    private val sharedPreference= SharedPreferenceHelper()
 //    endregion
 
 //region lifecycle
@@ -32,8 +31,6 @@ class LoginViewModel(private val app: Application) : AndroidViewModel(app) {
         isShowing.value = true
         email.value = ""
         password.value = ""
-        loading.value=false
-        sharedPreference.also { it.setSharedPreference(app) }
     }
 
 //    endregion
@@ -57,19 +54,17 @@ class LoginViewModel(private val app: Application) : AndroidViewModel(app) {
         sharedPreference.setUser(user)
     }
 
-    private fun showToastMessage (message:String){
-        if (message != "")
-            Toast.makeText(app, message, Toast.LENGTH_LONG).show()
-
-    }
 
     private fun setLogin() {
+        setLoading(true)
         if (!email.value!!.isValidEmail()) {
             showToastMessage(app.getString(R.string.email_not_valid))
+            setLoading(false)
             return
         }
         else if (!password.value!!.isValidPassword()) {
             showToastMessage(app.getString(R.string.password_not_correct))
+            setLoading(false)
             return
         }
         callApiSignIn()
@@ -94,7 +89,6 @@ class LoginViewModel(private val app: Application) : AndroidViewModel(app) {
     }
 
     private fun callApiSignIn() {
-        setLoading(true)
         apiRequestBody.put("email",email.value)
         apiRequestBody.put("password",password.value)
         apiRequestBody.put("app_platform",ApplicationConstants.APP_TYPE)
@@ -102,9 +96,7 @@ class LoginViewModel(private val app: Application) : AndroidViewModel(app) {
         UserAPIConnection.signInUser(apiRequestBody,signInLister)
     }
 
-    private fun setLoading(b: Boolean) {
-        loading.postValue(b)
-    }
+
 //end region
 
 }

@@ -21,6 +21,7 @@
     <string name="powered_by">POWERED BY</string>
     <string name="email_not_valid">Please enter a valid Email</string>
     <string name="password_not_correct">Please enter a valid Password</string>
+    <string name="password_do_not_match">Passwords did not matched</string>
     <string name="set_password_first_time">User need to set password for first time</string>
-    <string name="no_need_to_set_password">User have set the password first time</string>
+    <string name="no_need_to_set_password">User do not need to set the password first time</string>
 </resources>
