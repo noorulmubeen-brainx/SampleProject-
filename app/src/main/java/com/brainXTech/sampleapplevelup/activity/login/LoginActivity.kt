@@ -5,51 +5,30 @@ import android.os.Bundle
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageView
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.observe
+import com.brainXTech.sampleapplevelup.viewModel.LoginViewModel
 import com.brainXTech.sampleapplevelup.R
 import com.brainXTech.sampleapplevelup.databinding.ActivityLoginBinding
-import com.brainXTech.sampleapplevelup.databinding.ActivityOnBoardingBinding
 import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.android.synthetic.main.activity_login.view.*
 
 class LoginActivity : AppCompatActivity(), View.OnClickListener {
     //    region properties
     private lateinit var loginBinding: ActivityLoginBinding
-    private lateinit var emailEditText: EditText
-    private lateinit var passwordEditText: EditText
-    private lateinit var passwordShowHideIcon: ImageView
-    private lateinit var signInButton: Button
-    private var isShowing:Boolean=false
+    private lateinit var loginViewModel: LoginViewModel
 
 
 //    endregion
 
-//region Implemented Methods
+    //region Implemented Methods
     override fun onClick(v: View?) {
 //        TODO("Not yet implemented")
-        when(v?.id){
-            R.id.showHidePassword->{
-                showPassword(isShowing)
-
-            }
-        }
+        loginViewModel.onClickListener(v)
     }
 
-    private fun showPassword(b: Boolean) {
-        if(b){
-            passwordEditText.setTransformationMethod(PasswordTransformationMethod.getInstance())
-            showHidePassword.setImageResource(R.drawable.ic_eye)
-        }
-        else{
-            passwordEditText.setTransformationMethod(HideReturnsTransformationMethod.getInstance())
-            showHidePassword.setImageResource(R.drawable.ic_closed_eye)
-        }
-        isShowing=!isShowing
-        passwordEditText.setSelection(passwordEditText.text.length);
-    }
 
 //    endregion
 
@@ -59,17 +38,43 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         setListeners()
     }
 
+
     private fun setListeners() {
-//        TODO("Not yet implemented")
-        passwordShowHideIcon.setOnClickListener(this)
+        showHidePassword.setOnClickListener(this)
+        signInButton.setOnClickListener(this)
     }
 
     private fun setBinding() {
-//        TODO("Not yet implemented")
+        loginViewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
         loginBinding = DataBindingUtil.setContentView(this, R.layout.activity_login)
-        signInButton=loginBinding.button
-        emailEditText=loginBinding.editTextTextEmailAddress
-        passwordEditText=loginBinding.editTextTextPassword
-        passwordShowHideIcon=loginBinding.showHidePassword
+        loginBinding.lifecycleOwner = this
+        loginBinding.viewModel = loginViewModel
+        loginViewModel.isShowing.observe(this, showHidePasswordCallBack)
+        loginViewModel.showToastMessage.observe(this, showToastMessage)
     }
+
+    private val showToastMessage = Observer<String> {
+        if (it != "")
+            Toast.makeText(this, it, Toast.LENGTH_LONG).show()
+
+    }
+
+    private fun showToast() {
+
+    }
+
+    private val showHidePasswordCallBack = Observer<Boolean> {
+        showPassword(it)
+    }
+
+    private fun showPassword(b: Boolean) {
+        if (b) {
+            editTextTextPassword.transformationMethod = PasswordTransformationMethod.getInstance()
+        } else {
+            editTextTextPassword.transformationMethod =
+                HideReturnsTransformationMethod.getInstance()
+        }
+        editTextTextPassword.setSelection(editTextTextPassword.text.length)
+    }
+
 }

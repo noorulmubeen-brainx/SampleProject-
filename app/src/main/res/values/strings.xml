@@ -13,4 +13,10 @@
     <string name="log_in">Log In</string>
     <string name="email">Email</string>
     <string name="password">password</string>
+    <string name="update_password">Please update your password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="new_password">New Password</string>
+    <string name="update_text_pass">UPDATE PASSWORD</string>
+    <string name="update">Update</string>
+    <string name="powered_by">POWERED BY</string>
 </resources>
