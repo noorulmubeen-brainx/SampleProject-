@@ -25,9 +25,11 @@ class SharedPreferenceHelper {
     fun getIfFirstTime(): Boolean {
         return sharedPref.getBoolean(IS_FIRST_TIME, true)
     }
-    fun getUser(): User {
+    fun getUser(): User? {
         val gson = Gson()
         val user: User?
+        if(sharedPref.getString(USER,"")=="")
+            return null
         user = gson.fromJson(sharedPref?.getString(USER, ""), User::class.java)
         return user
     }

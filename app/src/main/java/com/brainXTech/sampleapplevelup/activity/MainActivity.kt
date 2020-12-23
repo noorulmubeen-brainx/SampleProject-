@@ -15,6 +15,13 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 //        TODO("Check if we need to show the on boarding screens?")
 //        TODO("get shared preference and check if first time or not")
+
+
+
+    }
+
+    override fun onStart() {
+        super.onStart()
         val helper:SharedPreferenceHelper=SharedPreferenceHelper().also {
             it.setSharedPreference(this)
         }
@@ -23,11 +30,11 @@ class MainActivity : AppCompatActivity() {
 //            TODO: Move to OnBoarding screens
         }
         else{
-            if(helper.getUser().name=="")
-            moveToLogin()
+            if(helper.getUser()==null)
+                moveToLogin()
             else{
                 Toast.makeText(this,"User Is logged in",Toast.LENGTH_LONG).show()
-                if (helper.getUser().firstLogin){
+                if (helper.getUser()!!.firstLogin){
                     Toast.makeText(this,"User need to set password",Toast.LENGTH_LONG).show()
                 }
             }
@@ -35,8 +42,6 @@ class MainActivity : AppCompatActivity() {
 //            TODO: if yes move to main screen else go to signIn screen
 
         }
-
-
     }
 
     private fun moveToLogin() {
