@@ -18,8 +18,6 @@ object UserAPIConnection {
                     val apiResponse = response.body()
                     apiResponse?.accessToken = response.headers().get("access-token")
                     apiResponse?.client = response.headers().get("client")
-//                    apiResponse?.uid = response.headers().get("uid").toString()
-
                     if (apiResponse != null)
                         signInListener.onSuccess(apiResponse)
                     else
@@ -27,7 +25,7 @@ object UserAPIConnection {
                 } else {
                     try {
                         signInListener.onFailure(
-                            "Please try again"
+                            "Please try again.Invalid Credentials"
                         )
                     } catch (e: Exception) {
                         e.message?.let { signInListener.onFailure(it) }

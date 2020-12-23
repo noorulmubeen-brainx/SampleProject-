@@ -19,4 +19,6 @@
     <string name="update_text_pass">UPDATE PASSWORD</string>
     <string name="update">Update</string>
     <string name="powered_by">POWERED BY</string>
+    <string name="email_not_valid">Please enter a valid Email</string>
+    <string name="password_not_correct">Please enter a valid Password</string>
 </resources>
