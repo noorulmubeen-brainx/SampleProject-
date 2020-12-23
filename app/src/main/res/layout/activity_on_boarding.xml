@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".activity.onBoarding.OnBoardingActivity">
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/on_boarding_view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@id/secondDot"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/firstDot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="28dp"
+            android:background="@drawable/ic_selected_bottom_point"
+            app:layout_constraintBottom_toTopOf="@id/skipButton"
+            app:layout_constraintEnd_toStartOf="@+id/secondDot"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            android:contentDescription="@string/first_onboarding_heading" />
+
+        <ImageView
+            android:id="@+id/secondDot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="28dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/skipButton"
+            android:background= "@drawable/ic_not_selected_bottom_point"
+            android:contentDescription="@string/second_onboarding_screen_heading" />
+
+        <ImageView
+            android:id="@+id/thirdDot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="28dp"
+            android:background="@drawable/ic_not_selected_bottom_point"
+            app:layout_constraintBottom_toTopOf="@id/skipButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@id/secondDot"
+            android:contentDescription="@string/third_on_boarding_heading" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/skipButton"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginBottom="20dp"
+            android:layout_width="match_parent"
+            android:textAllCaps="false"
+            android:text="@string/get_started"
+            android:textColor="@color/white"
+            android:background="@drawable/button_round_corner"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
