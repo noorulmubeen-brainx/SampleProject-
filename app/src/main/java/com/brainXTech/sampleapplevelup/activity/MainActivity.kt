@@ -12,6 +12,9 @@ import com.brainXTech.sampleapplevelup.activity.login.LoginActivity
 import com.brainXTech.sampleapplevelup.activity.onBoarding.OnBoardingActivity
 
 class MainActivity : AppCompatActivity() {
+
+
+    //    region LifeCycle Methods
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -19,28 +22,27 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        val helper:SharedPreferenceHelper=SharedPreferenceHelper.getInstance(this).also {
-        }
-        if (helper.getIfFirstTime()){
+        val helper: SharedPreferenceHelper = SharedPreferenceHelper.getInstance(this)
+        if (helper.getIfFirstTime()) {
             moveToOnBoarding()
         }
         else{
             if(helper.getUser()==null)
                 moveToLogin()
-            else{
-                if (helper.getUser()!!.firstLogin){
+            else {
+                if (helper.getUser()!!.firstLogin) {
                     moveToSetPasswordFirstTime()
-                }
-                else{
+                } else {
                     moveToHomeScreen()
                 }
             }
         }
     }
 
-
+    //endregion
+//region PrivateMethods
     private fun moveToHomeScreen() {
-        UtilFunction.gotoActivityWithFinish(this,HomeActivity::class.java)
+        UtilFunction.gotoActivityWithFinish(this, HomeActivity::class.java)
     }
 
 
@@ -55,4 +57,5 @@ class MainActivity : AppCompatActivity() {
     private fun moveToOnBoarding() {
         UtilFunction.gotoActivity(this,OnBoardingActivity::class.java)
     }
+//    endregion
 }

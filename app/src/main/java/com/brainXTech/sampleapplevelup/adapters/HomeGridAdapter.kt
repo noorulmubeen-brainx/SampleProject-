@@ -11,7 +11,7 @@ import com.brainXTech.sampleapplevelup.R
 
 class HomeGridAdapter(private val context: Context,private val elements:List<GridItems>):BaseAdapter() {
 
-
+// region Implemented Methods
 
     override fun getCount(): Int {
         return elements.size
@@ -33,4 +33,5 @@ class HomeGridAdapter(private val context: Context,private val elements:List<Gri
         image.setImageResource(elements.get(position).imageId)
         return view
     }
+//    endregion
 }

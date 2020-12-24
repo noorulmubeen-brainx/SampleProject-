@@ -14,19 +14,21 @@ import com.brainXTech.sampleapplevelup.databinding.FragmentHomeBinding
 import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : Fragment() {
-
+    //    region Private Properties
     private lateinit var homeFragmentBinding: FragmentHomeBinding
 
-    var elements: ArrayList<GridItems> = ArrayList<GridItems>()
+    private var elements: ArrayList<GridItems> = ArrayList<GridItems>()
+//endregion
 
 
-
+    //    region Lifecycle methods
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        homeFragmentBinding=DataBindingUtil.inflate(inflater,R.layout.fragment_home,container,false)
+        homeFragmentBinding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
         return homeFragmentBinding.root
     }
 
@@ -38,6 +40,8 @@ class HomeFragment : Fragment() {
 
     }
 
+    //   endregion
+//region Private Methods
     private fun setName() {
         val user = SharedPreferenceHelper.getInstance(requireContext()).getUser()
         nameText.text = user?.name
@@ -60,9 +64,8 @@ class HomeFragment : Fragment() {
 
     private fun setGridAdapter() {
         homeGridView.adapter=HomeGridAdapter(requireActivity(),elements)
-
-
     }
+//    endregion
 
 
 }

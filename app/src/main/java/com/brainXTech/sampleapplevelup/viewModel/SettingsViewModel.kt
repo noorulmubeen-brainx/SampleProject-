@@ -12,11 +12,27 @@ import com.brainXTech.sampleapplevelup.network.UserAPIConnection
 import kotlinx.android.synthetic.main.fragment_settings.view.*
 
 class SettingsViewModel(app: Application) : BaseViewModel(app) {
+    //    region PUBLIC PROPERTIES
     var dialogueToShow = MutableLiveData<Boolean>()
     var gotoLogin = MutableLiveData<Boolean>()
+//    endregion
+
+    //    region PRIVATE PROPERTIES
     private var user: User? = null
 
+    // endregion
+//region PrivateMethods
+    private fun sendCallToAPI() {
+        loading.postValue(true)
+        user = SharedPreferenceHelper.getInstance(app).getUser()!!.apply {
+            UserAPIConnection.signOutUser(accessToken!!, uid, client!!, signOutListener)
+        }
 
+    }
+//endregion
+
+
+    //    region IMPLEMENTED METHODS
     fun onClick(v: View?) {
         when (v?.id) {
             R.id.logOutButton -> {
@@ -31,7 +47,9 @@ class SettingsViewModel(app: Application) : BaseViewModel(app) {
             }
         }
     }
+//endregion
 
+//    region Callback Functions
 
     private val signOutListener = object : IResponse<Map<String, Any?>, String> {
         override fun onFailure(error: String) {
@@ -47,12 +65,5 @@ class SettingsViewModel(app: Application) : BaseViewModel(app) {
             gotoLogin.postValue(true)
         }
     }
-
-    private fun sendCallToAPI() {
-        loading.postValue(true)
-        user = SharedPreferenceHelper.getInstance(app).getUser()!!.apply {
-            UserAPIConnection.signOutUser(accessToken!!, uid, client!!, signOutListener)
-        }
-
-    }
+//endregion
 }

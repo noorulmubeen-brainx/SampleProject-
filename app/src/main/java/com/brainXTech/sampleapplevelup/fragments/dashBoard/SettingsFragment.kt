@@ -3,7 +3,6 @@ package com.brainXTech.sampleapplevelup.fragments.dashBoard
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.os.CountDownTimer
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -16,22 +15,23 @@ import com.afollestad.materialdialogs.MaterialDialog
 import com.brainXTech.sampleapplevelup.R
 import com.brainXTech.sampleapplevelup.Utils.UtilFunction
 import com.brainXTech.sampleapplevelup.activity.login.LoginActivity
-import com.brainXTech.sampleapplevelup.customViews.CustomDialogue
 import com.brainXTech.sampleapplevelup.databinding.FragmentSettingsBinding
 import com.brainXTech.sampleapplevelup.viewModel.SettingsViewModel
 import kotlinx.android.synthetic.main.fragment_settings.*
 
 class SettingsFragment : Fragment(), View.OnClickListener {
-
+//region Private Properties
     private lateinit var settingsFragmentBinding: FragmentSettingsBinding
     private lateinit var settingsViewModel: SettingsViewModel
     private lateinit var dialog: MaterialDialog
+//endregion
 
+//    region LifeCycleMethods
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         settingsFragmentBinding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_settings, container, false)
@@ -39,6 +39,14 @@ class SettingsFragment : Fragment(), View.OnClickListener {
         setObserver()
         return settingsFragmentBinding.root
     }
+
+
+    override fun onStart() {
+        super.onStart()
+        addListener()
+    }
+//endregion
+//    PrivateMethods
 
     private fun setObserver() {
         settingsViewModel = ViewModelProvider(this).get(SettingsViewModel::class.java)
@@ -48,11 +56,33 @@ class SettingsFragment : Fragment(), View.OnClickListener {
         settingsViewModel.gotoLogin.observe(viewLifecycleOwner, gotoLogin)
     }
 
-    override fun onStart() {
-        super.onStart()
-        addListener()
+    private fun showDialog() {
+        dialog = MaterialDialog(requireContext()).also {
+            it.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            it.setContentView(R.layout.dialogue_logout_confirmation)
+            val button = it.findViewById<Button>(R.id.logoutConfirm)
+            val cancelButton = it.findViewById<Button>(R.id.cancel_button)
+            button.setOnClickListener(this)
+            cancelButton.setOnClickListener(this)
+        }
+        dialog.show()
+
+
     }
 
+
+    private fun addListener() {
+        logOutButton.setOnClickListener(this)
+    }
+
+    //endregion
+//    region Implemented Method
+    override fun onClick(v: View?) {
+        settingsViewModel.onClick(v)
+    }
+//    endregion
+
+    //    region Callback Methods
     private val showConfirmationDialogCallBack = Observer<Boolean> {
         if (it) {
             showDialog()
@@ -78,28 +108,6 @@ class SettingsFragment : Fragment(), View.OnClickListener {
         }
 
     }
+//end region
 
-    private fun showDialog() {
-        dialog = MaterialDialog(requireContext()).also {
-            it.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-            it.setContentView(R.layout.dialogue_logout_confirmation)
-            val button = it.findViewById<Button>(R.id.logoutConfirm)
-            val cancelButton = it.findViewById<Button>(R.id.cancel_button)
-            button.setOnClickListener(this)
-            cancelButton.setOnClickListener(this)
-        }
-        dialog.show()
-
-
-    }
-
-
-    private fun addListener() {
-        logOutButton.setOnClickListener(this)
-    }
-
-
-    override fun onClick(v: View?) {
-        settingsViewModel.onClick(v)
-    }
 }

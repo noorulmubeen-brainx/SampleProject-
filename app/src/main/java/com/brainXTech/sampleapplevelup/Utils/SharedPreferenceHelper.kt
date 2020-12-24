@@ -31,12 +31,13 @@ class SharedPreferenceHelper(context: Context) {
         //endregion
     }
     //endregion
+//    lifecycle methods
     init {
         sharedPref = context.getSharedPreferences(
             APP_NAME, Context.MODE_PRIVATE
         )
     }
-
+//endregion
 
 
     //    region getValues

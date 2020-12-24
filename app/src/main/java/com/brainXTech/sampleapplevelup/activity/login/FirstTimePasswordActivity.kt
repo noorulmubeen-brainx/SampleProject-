@@ -16,44 +16,60 @@ import com.brainXTech.sampleapplevelup.viewModel.FirstTimePasswordViewModel
 import kotlinx.android.synthetic.main.activity_first_time_password.*
 
 class FirstTimePasswordActivity : AppCompatActivity(),View.OnClickListener {
-
+//region PRIVATE PROPERTIES
     private lateinit var firstTimeBinding:ActivityFirstTimePasswordBinding
-    private lateinit var firstTimeViewModel:FirstTimePasswordViewModel
+    private lateinit var firstTimeViewModel: FirstTimePasswordViewModel
+//endregion
 
-
-    override fun onClick(v: View?) {
-        firstTimeViewModel.onClickListener(v)
-    }
-
+    //    region LIFECYCLE METHODS
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setBinding()
         attachListeners()
     }
 
+//    endregion
+
+    //    PRIVATE METHODS
     private fun attachListeners() {
         updatePassword.setOnClickListener(this)
     }
 
     private fun setBinding() {
-        firstTimeViewModel=ViewModelProvider(this).get(FirstTimePasswordViewModel::class.java)
-        firstTimeBinding=DataBindingUtil.setContentView(this,R.layout.activity_first_time_password)
-        firstTimeBinding.lifecycleOwner=this
-        firstTimeBinding.viewModel=firstTimeViewModel
-        firstTimeViewModel.moveToHome.observe(this,moveToHome)
-        firstTimeViewModel.loading.observe(this,setProgressbar)
+        firstTimeViewModel = ViewModelProvider(this).get(FirstTimePasswordViewModel::class.java)
+        firstTimeBinding =
+            DataBindingUtil.setContentView(this, R.layout.activity_first_time_password)
+        firstTimeBinding.lifecycleOwner = this
+        firstTimeBinding.viewModel = firstTimeViewModel
+        firstTimeViewModel.moveToHome.observe(this, moveToHome)
+        firstTimeViewModel.loading.observe(this, setProgressbar)
 
 
     }
 
-    private val setProgressbar= Observer<Boolean>{
-        if(it){
-            changePasswordProgress.visibility=View.VISIBLE
-            updatePassword.visibility=View.INVISIBLE
-        }
-        else{
-            updatePassword.visibility=View.VISIBLE
-            changePasswordProgress.visibility=View.INVISIBLE
+    private fun moveTOHomeScreen() {
+        val value = Intent(this, HomeActivity::class.java)
+        value.putExtra(ApplicationConstants.SHOW_CHANGE_PASSWORD_DIALOGUE, true)
+        startActivity(value)
+        finishAffinity()
+    }
+//    endRegion
+
+    //region IMPLEMENTED METHODS
+    override fun onClick(v: View?) {
+        firstTimeViewModel.onClickListener(v)
+    }
+
+//    endregion
+
+    //    region CALLBACK METHODS
+    private val setProgressbar = Observer<Boolean> {
+        if (it) {
+            changePasswordProgress.visibility = View.VISIBLE
+            updatePassword.visibility = View.INVISIBLE
+        } else {
+            updatePassword.visibility = View.VISIBLE
+            changePasswordProgress.visibility = View.INVISIBLE
         }
     }
 
@@ -62,12 +78,5 @@ class FirstTimePasswordActivity : AppCompatActivity(),View.OnClickListener {
             moveTOHomeScreen()
         }
     }
-    private fun moveTOHomeScreen() {
-        val value = Intent (this, HomeActivity::class.java)
-        value.putExtra(ApplicationConstants.SHOW_CHANGE_PASSWORD_DIALOGUE,true)
-        startActivity(value)
-        finishAffinity()
-    }
-
-
+//endregion
 }

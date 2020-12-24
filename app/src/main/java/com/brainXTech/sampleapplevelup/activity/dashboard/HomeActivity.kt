@@ -2,15 +2,16 @@ package com.brainXTech.sampleapplevelup.activity.dashboard
 
 import android.graphics.Color
 import android.graphics.Typeface
+import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import com.afollestad.materialdialogs.MaterialDialog
 import com.brainXTech.sampleapplevelup.R
 import com.brainXTech.sampleapplevelup.Utils.ApplicationConstants
 import com.brainXTech.sampleapplevelup.adapters.HomePageAdapter
-import com.brainXTech.sampleapplevelup.customViews.CustomDialogue
 import com.brainXTech.sampleapplevelup.databinding.ActivityHomeBinding
 import com.brainXTech.sampleapplevelup.fragments.dashBoard.HomeFragment
 import com.brainXTech.sampleapplevelup.fragments.dashBoard.NotificationFragment
@@ -21,10 +22,14 @@ import kotlinx.android.synthetic.main.home_tab_layout.view.*
 
 class
 HomeActivity : AppCompatActivity() {
+    //    region PRIVATE PROPERTIES
     private lateinit var homeBinding: ActivityHomeBinding
     private var fragmentList: MutableList<Fragment> = mutableListOf()
     private val fragmentsTitles: MutableList<String> = mutableListOf()
     private val tabIcons: MutableList<Int> = mutableListOf()
+
+    //    endregion
+//region LifeCycleMethod
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setBinding()
@@ -34,30 +39,12 @@ HomeActivity : AppCompatActivity() {
         setTabChangeListener()
     }
 
+    //    endregion
+// region Private Methods
     private fun setTabChangeListener() {
         homeTabLayout.addOnTabSelectedListener(homeTabListener)
     }
 
-    private val homeTabListener =object : TabLayout.OnTabSelectedListener {
-        override fun onTabSelected(tab: TabLayout.Tab?) {
-            when(tab?.position){
-                0-> setActiveTab(tab,R.drawable.ic_home_selected)
-                1->setActiveTab(tab,R.drawable.ic_notification_selected)
-                2->setActiveTab(tab,R.drawable.ic_settings_selected)
-            }
-        }
-
-        override fun onTabUnselected(tab: TabLayout.Tab?) {
-            when(tab?.position){
-                0-> setDeActivateTab(tab,R.drawable.ic_home_not_selected)
-                1->setDeActivateTab(tab,R.drawable.ic_notification_not_selected)
-                2->setDeActivateTab(tab,R.drawable.ic_settings_not_selected)
-            }
-        }
-
-        override fun onTabReselected(tab: TabLayout.Tab?) {
-        }
-    }
 
     private fun setDeActivateTab(tab: TabLayout.Tab, imageResource: Int) {
         tab.customView?.home_tab_layout_icon?.setImageResource(imageResource)
@@ -97,10 +84,13 @@ HomeActivity : AppCompatActivity() {
     }
 
     private fun setDialogue() {
-        val dialog = CustomDialogue(R.layout.dialogue_box_password_change, this)
+        val dialog = MaterialDialog(this).also {
+            it.setContentView(R.layout.dialogue_box_password_change)
+            window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        }
         dialog.show()
         val timer = object : CountDownTimer(5000, 5000) {
-            override fun onTick(millisUntilFinished: Long)= Unit
+            override fun onTick(millisUntilFinished: Long) = Unit
 
             override fun onFinish() {
                 dialog.dismiss()
@@ -112,8 +102,6 @@ HomeActivity : AppCompatActivity() {
 
     private fun setBinding() {
         homeBinding = DataBindingUtil.setContentView(this, R.layout.activity_home)
-
-
     }
 
     private fun setViewPagerAdapter() {
@@ -141,5 +129,27 @@ HomeActivity : AppCompatActivity() {
         }
     }
 
+    //    endregion
+//    region IMPLEMENTED METHODS
+    private val homeTabListener = object : TabLayout.OnTabSelectedListener {
+        override fun onTabSelected(tab: TabLayout.Tab?) {
+            when (tab?.position) {
+                0 -> setActiveTab(tab, R.drawable.ic_home_selected)
+                1 -> setActiveTab(tab, R.drawable.ic_notification_selected)
+                2 -> setActiveTab(tab, R.drawable.ic_settings_selected)
+            }
+        }
+
+        override fun onTabUnselected(tab: TabLayout.Tab?) {
+            when (tab?.position) {
+                0 -> setDeActivateTab(tab, R.drawable.ic_home_not_selected)
+                1 -> setDeActivateTab(tab, R.drawable.ic_notification_not_selected)
+                2 -> setDeActivateTab(tab, R.drawable.ic_settings_not_selected)
+            }
+        }
+
+        override fun onTabReselected(tab: TabLayout.Tab?) = Unit
+    }
+//endregion
 }
 

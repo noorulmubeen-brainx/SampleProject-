@@ -40,6 +40,7 @@
             android:layout_weight="1"
             android:background="@drawable/normal_button_with_six_radius_grey_color"
             android:text="@string/cancel"
+            android:textColor="@color/secondary_text_on_boarding"
             android:layout_marginEnd="10dp"
             android:layout_marginRight="10dp" />
 

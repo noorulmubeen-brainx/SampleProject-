@@ -9,26 +9,27 @@ import com.brainXTech.sampleapplevelup.fragments.onBaording.OnBoardingFirstFragm
 
 class HomePageAdapter(fm: FragmentManager): FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT)  {
 
-    //region properties
+    //region privateProperties
     private lateinit var fragmentList: List<Fragment>
     private lateinit var titleList: List<String>
     //endregion
 
+    //region private Methods
+    fun addFragments(fragments: List<Fragment>, titles: List<String>) {
+        fragmentList = fragments
+        titleList = titles
+    }
+    //endregion
 
 
+    //    region ImplementedMethods
+    override fun getItem(position: Int): Fragment = fragmentList[position]
 
-    override fun getItem(position: Int): Fragment =fragmentList[position]
-
-    override fun getCount(): Int =fragmentList.size
+    override fun getCount(): Int = fragmentList.size
 
     override fun getPageTitle(position: Int): CharSequence =
         if (titleList.size > position) titleList[position] else ""
 
-    fun addFragments(fragments:List<Fragment>,titles:List<String>){
-        fragmentList = fragments
-        titleList = titles
-    }
-
-
+//endregion
 
 }

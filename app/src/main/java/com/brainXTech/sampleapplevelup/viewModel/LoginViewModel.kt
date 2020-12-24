@@ -7,10 +7,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.brainXTech.sampleapplevelup.ModelClasses.User
 import com.brainXTech.sampleapplevelup.R
-import com.brainXTech.sampleapplevelup.Utils.ApplicationConstants
-import com.brainXTech.sampleapplevelup.Utils.SharedPreferenceHelper
-import com.brainXTech.sampleapplevelup.Utils.isValidEmail
-import com.brainXTech.sampleapplevelup.Utils.isValidPassword
+import com.brainXTech.sampleapplevelup.Utils.*
 import com.brainXTech.sampleapplevelup.`interface`.IResponse
 import com.brainXTech.sampleapplevelup.baseClasses.BaseViewModel
 import com.brainXTech.sampleapplevelup.network.UserAPIConnection
@@ -20,10 +17,11 @@ class LoginViewModel(app: Application) : BaseViewModel(app) {
     val isShowing = MutableLiveData<Boolean>()
     val email = MutableLiveData<String>()
     val password = MutableLiveData<String>()
-    private val apiRequestBody = HashMap<String,Any?>()
-    val moveToFirstTimePassword=MutableLiveData<Boolean>()
-//    endregion
+    val moveToFirstTimePassword = MutableLiveData<Boolean>()
+
+    //    endregion
 //    region private Properties
+    private val apiRequestBody = HashMap<String, Any?>()
 //    endregion
 
 //region lifecycle
@@ -71,11 +69,25 @@ class LoginViewModel(app: Application) : BaseViewModel(app) {
         return
     }
 
+
+    private fun callApiSignIn() {
+        apiRequestBody.clear()
+        apiRequestBody.put(ApiConstants.SIGNIN_BODY_EMAIL, email.value)
+        apiRequestBody.put(ApiConstants.SIGNIN_BODY_PASSWORD, password.value)
+        apiRequestBody.put(ApiConstants.SIGNIN_BODY_APP_PLATFORM, ApplicationConstants.APP_TYPE)
+        apiRequestBody.put(ApiConstants.SIGNIN_BODY_APP_VERSION, ApplicationConstants.APP_VERSION)
+        UserAPIConnection.signInUser(apiRequestBody, signInLister)
+    }
+
+
+//end region
+
+    //    region CallbackMethod
     private val signInLister = object : IResponse<User, String> {
         override fun onSuccess(result: User) {
             setUserToPreference(result)
             setLoading(false)
-            if(result.firstLogin)
+            if (result.firstLogin)
                 moveToFirstTimePassword.postValue(true)
             else
                 moveToFirstTimePassword.postValue(false)
@@ -87,16 +99,6 @@ class LoginViewModel(app: Application) : BaseViewModel(app) {
 
         }
     }
-
-    private fun callApiSignIn() {
-        apiRequestBody.put("email",email.value)
-        apiRequestBody.put("password",password.value)
-        apiRequestBody.put("app_platform",ApplicationConstants.APP_TYPE)
-        apiRequestBody.put("app_version",ApplicationConstants.APP_VERSION)
-        UserAPIConnection.signInUser(apiRequestBody,signInLister)
-    }
-
-
-//end region
+//    endregion
 
 }
