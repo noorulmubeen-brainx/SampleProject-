@@ -9,7 +9,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.brainXTech.sampleapplevelup.R
-import com.brainXTech.sampleapplevelup.activity.MainActivity
+import com.brainXTech.sampleapplevelup.Utils.ApplicationConstants
+import com.brainXTech.sampleapplevelup.activity.dashboard.HomeActivity
 import com.brainXTech.sampleapplevelup.databinding.ActivityFirstTimePasswordBinding
 import com.brainXTech.sampleapplevelup.viewModel.FirstTimePasswordViewModel
 import kotlinx.android.synthetic.main.activity_first_time_password.*
@@ -40,12 +41,12 @@ class FirstTimePasswordActivity : AppCompatActivity(),View.OnClickListener {
         firstTimeBinding.lifecycleOwner=this
         firstTimeBinding.viewModel=firstTimeViewModel
         firstTimeViewModel.moveToHome.observe(this,moveToHome)
-        firstTimeViewModel.loading.observe(this,setProgresbar)
+        firstTimeViewModel.loading.observe(this,setProgressbar)
 
 
     }
 
-    private val setProgresbar= Observer<Boolean>{
+    private val setProgressbar= Observer<Boolean>{
         if(it){
             changePasswordProgress.visibility=View.VISIBLE
             updatePassword.visibility=View.INVISIBLE
@@ -64,8 +65,10 @@ class FirstTimePasswordActivity : AppCompatActivity(),View.OnClickListener {
 
     private fun moveTOHomeScreen() {
         Toast.makeText(this,"You should be at home Screen",Toast.LENGTH_LONG).show()
-        val value = Intent (this, MainActivity::class.java)
+        val value = Intent (this, HomeActivity::class.java)
+        value.putExtra(ApplicationConstants.SHOW_CHANGE_PASSWORD_DIALOGUE,true)
         startActivity(value)
+        finishAffinity()
     }
 
 

@@ -2,8 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.brainXTech.sampleapplevelup">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="false"
@@ -12,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SampleAppLevelUp">
-        <activity android:name=".activity.login.FirstTimePasswordActivity"></activity>
+        <activity android:name=".activity.dashboard.HomeActivity"></activity>
+        <activity android:name=".activity.login.FirstTimePasswordActivity" />
         <activity android:name=".activity.login.LoginActivity" />
         <activity android:name=".activity.onBoarding.OnBoardingActivity" />
         <activity android:name=".activity.MainActivity">

@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.brainXTech.sampleapplevelup.R
+import com.brainXTech.sampleapplevelup.Utils.ApplicationConstants
 import com.brainXTech.sampleapplevelup.Utils.SharedPreferenceHelper
+import com.brainXTech.sampleapplevelup.activity.dashboard.HomeActivity
 import com.brainXTech.sampleapplevelup.activity.login.FirstTimePasswordActivity
 import com.brainXTech.sampleapplevelup.activity.login.LoginActivity
 import com.brainXTech.sampleapplevelup.activity.onBoarding.OnBoardingActivity
@@ -40,20 +42,32 @@ class MainActivity : AppCompatActivity() {
                     moveToSetPasswordFirstTime()
                 }
                 else{
+
+                    moveToHomeScreen()
                     Toast.makeText(this,"User need to go to home screen",Toast.LENGTH_LONG).show()
                 }
             }
         }
     }
 
+
+    private fun moveToHomeScreen() {
+        val value = Intent (this, HomeActivity::class.java)
+        startActivity(value)
+        finish()
+    }
+
+
     private fun moveToSetPasswordFirstTime() {
         val value = Intent (this, FirstTimePasswordActivity::class.java)
         startActivity(value)
+        finish()
     }
 
     private fun moveToLogin() {
         val value = Intent (this, LoginActivity::class.java)
         startActivity(value)
+        finish()
     }
 
     private fun moveToOnBoarding() {

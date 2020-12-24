@@ -24,4 +24,7 @@
     <string name="password_do_not_match">Passwords did not matched</string>
     <string name="set_password_first_time">User need to set password for first time</string>
     <string name="no_need_to_set_password">User do not need to set the password first time</string>
+    <string name="your_password_has_been_changed_successfully">Your password has been changed Successfully</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

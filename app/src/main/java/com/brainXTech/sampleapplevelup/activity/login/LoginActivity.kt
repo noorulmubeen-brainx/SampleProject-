@@ -10,14 +10,11 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.brainXTech.sampleapplevelup.ModelClasses.User
 import com.brainXTech.sampleapplevelup.viewModel.LoginViewModel
 import com.brainXTech.sampleapplevelup.R
-import com.brainXTech.sampleapplevelup.Utils.SharedPreferenceHelper
 import com.brainXTech.sampleapplevelup.activity.MainActivity
 import com.brainXTech.sampleapplevelup.databinding.ActivityLoginBinding
 import kotlinx.android.synthetic.main.activity_login.*
-
 class LoginActivity : AppCompatActivity(), View.OnClickListener {
     //    region properties
     private lateinit var loginBinding: ActivityLoginBinding
@@ -103,11 +100,13 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         if(it){
             val value = Intent (this, FirstTimePasswordActivity::class.java)
             startActivity(value)
+            finish()
         }
         else{
             showToastMessage(getString(R.string.no_need_to_set_password))
             val value = Intent (this, MainActivity::class.java)
             startActivity(value)
+            finish()
         }
 
     }

@@ -30,7 +30,7 @@ class SharedPreferenceHelper {
         val user: User?
         if(sharedPref.getString(USER,"")=="")
             return null
-        user = gson.fromJson(sharedPref?.getString(USER, ""), User::class.java)
+        user = gson.fromJson(sharedPref.getString(USER, ""), User::class.java)
         return user
     }
 //    endregion
@@ -48,7 +48,7 @@ class SharedPreferenceHelper {
         val gson = Gson()
         val json = gson.toJson(user)
 
-        val editor = sharedPref?.edit()
+        val editor = sharedPref.edit()
         editor?.putString(USER, json)
         editor?.apply()
     }
