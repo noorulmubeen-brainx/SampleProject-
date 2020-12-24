@@ -78,13 +78,6 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-
-    fun showToastMessage (message:String) {
-        if (message != "")
-            Toast.makeText(this, message, Toast.LENGTH_LONG).show()
-
-    }
-
     private val showHidePasswordCallBack = Observer<Boolean> {
         showPassword(it)
     }

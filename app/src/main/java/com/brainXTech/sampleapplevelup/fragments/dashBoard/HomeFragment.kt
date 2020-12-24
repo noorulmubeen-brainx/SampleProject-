@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import com.brainXTech.sampleapplevelup.ModelClasses.GridItems
 import com.brainXTech.sampleapplevelup.R
+import com.brainXTech.sampleapplevelup.Utils.SharedPreferenceHelper
 import com.brainXTech.sampleapplevelup.adapters.HomeGridAdapter
 import com.brainXTech.sampleapplevelup.databinding.FragmentHomeBinding
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -38,17 +39,23 @@ class HomeFragment : Fragment() {
     }
 
     private fun setName() {
-
+        val user = SharedPreferenceHelper.getInstance(requireContext()).getUser()
+        nameText.text = user?.name
     }
 
     private fun populateElements() {
         elements.clear()
-        elements.add(GridItems("Do Today",R.drawable.ic_do_today))
-        elements.add(GridItems("Activities and Tips",R.drawable.ic_activities___tips))
-        elements.add(GridItems("Track It",R.drawable.ic_track_it))
-        elements.add(GridItems("Plan",R.drawable.ic_plan))
-        elements.add(GridItems("Training",R.drawable.ic_training))
-        elements.add(GridItems("Say & Share",R.drawable.ic_say_and_share))
+        elements.add(GridItems(getString(R.string.do_today), R.drawable.ic_do_today))
+        elements.add(
+            GridItems(
+                getString(R.string.activities_and_tips),
+                R.drawable.ic_activities___tips
+            )
+        )
+        elements.add(GridItems(getString(R.string.track_it), R.drawable.ic_track_it))
+        elements.add(GridItems(getString(R.string.plan), R.drawable.ic_plan))
+        elements.add(GridItems(getString(R.string.training), R.drawable.ic_training))
+        elements.add(GridItems(getString(R.string.say_and_share), R.drawable.ic_say_and_share))
     }
 
     private fun setGridAdapter() {
