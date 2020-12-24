@@ -31,8 +31,13 @@ class HomeFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
+        setName()
         populateElements()
         setGridAdapter()
+
+    }
+
+    private fun setName() {
 
     }
 

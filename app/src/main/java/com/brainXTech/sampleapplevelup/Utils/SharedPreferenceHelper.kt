@@ -5,21 +5,39 @@ import android.content.SharedPreferences
 import com.brainXTech.sampleapplevelup.ModelClasses.User
 import com.google.gson.Gson
 
-class SharedPreferenceHelper {
+class SharedPreferenceHelper(context: Context) {
 
 
     //    region Properties
     private val APP_NAME = "SampleLevelUp"
+    private val mUUSpFile = "SampleLevelUpFile"
     private val IS_FIRST_TIME = "IsFirstTimeApp"
-    private lateinit var sharedPref: SharedPreferences
+    private var sharedPref: SharedPreferences
     private val USER ="currentUser"
 //    endregion
 
-    //    region Initialize
-    fun setSharedPreference(context: Context) {
-        sharedPref = context.getSharedPreferences(APP_NAME, Context.MODE_PRIVATE)
+    //region Static Members
+    companion object {
+        //region Properties
+        private var sharedPreferenceHelper: SharedPreferenceHelper? = null
+        //endregion
+        //region private method
+        fun getInstance(context: Context): SharedPreferenceHelper {
+            if (sharedPreferenceHelper == null) {
+                sharedPreferenceHelper = SharedPreferenceHelper(context)
+            }
+            return sharedPreferenceHelper as SharedPreferenceHelper
+        }
+        //endregion
     }
-// endregion
+    //endregion
+    init {
+        sharedPref = context.getSharedPreferences(
+            APP_NAME, Context.MODE_PRIVATE
+        )
+    }
+
+
 
     //    region getValues
     fun getIfFirstTime(): Boolean {

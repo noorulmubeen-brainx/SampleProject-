@@ -9,11 +9,10 @@ import com.brainXTech.sampleapplevelup.Utils.SharedPreferenceHelper
 open class BaseViewModel(val app: Application) : AndroidViewModel(app) {
 
     val loading = MutableLiveData<Boolean>()
-    val sharedPreference = SharedPreferenceHelper()
+    val sharedPreference = SharedPreferenceHelper.getInstance(app)
 
     init {
         loading.value = false
-        sharedPreference.also { it.setSharedPreference(app) }
     }
 
     fun showToastMessage(message: String) {

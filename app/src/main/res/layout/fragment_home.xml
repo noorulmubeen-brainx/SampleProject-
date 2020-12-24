@@ -3,58 +3,91 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/grey"
-        android:padding="10dp"
-        tools:context=".fragments.dashBoard.HomeFragment">
+        android:fillViewport="true"
+        android:layout_height="match_parent">
 
-        <LinearLayout
-            android:id="@+id/textLinearLayout"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="20dp"
-            android:layout_marginTop="50dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_height="match_parent"
+            android:background="@color/home_background"
+            android:padding="10dp"
+            tools:context=".fragments.dashBoard.HomeFragment">
 
-            <TextView
-                android:id="@+id/welcomeText"
+            <LinearLayout
+                android:id="@+id/textLinearLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Welcome "
-                android:textAllCaps="true"
-                style="bold"
-                android:textColor="@color/black"
-                android:textSize="22dp" />
+                android:layout_marginTop="50dp"
+                android:orientation="vertical"
+                android:padding="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:id="@+id/nameText"
+                <TextView
+                    android:id="@+id/welcomeText"
+                    style="bold"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/welcome_only"
+                    android:textAllCaps="true"
+                    android:textColor="@color/black"
+                    android:textSize="22dp" />
+
+                <TextView
+                    android:id="@+id/nameText"
+                    style="bold"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="John"
+                    android:textAllCaps="true"
+                    android:textColor="@color/app_primary"
+                    android:textSize="22dp" />
+            </LinearLayout>
+            <GridView
+                android:id="@+id/homeGridView"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:horizontalSpacing="20dp"
+                android:numColumns="2"
+                android:verticalSpacing="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textLinearLayout" />
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/app_primary"
-                style="bold"
-                android:textAllCaps="true"
-                android:text="John "
-                android:textSize="22dp" />
-        </LinearLayout>
+                android:background="@drawable/home_fragment_end_element"
+                android:orientation="vertical"
+                android:padding="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
 
-        <GridView
-            android:id="@+id/homeGridView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:horizontalSpacing="20dp"
-            android:numColumns="2"
-            android:verticalSpacing="20dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textLinearLayout" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/quot_you_can_meke_money_or_you_can_make_excuses_which_do_you_prefer_quot"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/font_medium"/>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:text="@string/by_tom_ferry"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/font_medium">
 
+                </TextView>
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
 </layout>

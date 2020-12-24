@@ -62,9 +62,7 @@ class FirstTimePasswordActivity : AppCompatActivity(),View.OnClickListener {
             moveTOHomeScreen()
         }
     }
-
     private fun moveTOHomeScreen() {
-        Toast.makeText(this,"You should be at home Screen",Toast.LENGTH_LONG).show()
         val value = Intent (this, HomeActivity::class.java)
         value.putExtra(ApplicationConstants.SHOW_CHANGE_PASSWORD_DIALOGUE,true)
         startActivity(value)

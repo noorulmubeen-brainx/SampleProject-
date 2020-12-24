@@ -1,16 +1,12 @@
 package com.brainXTech.sampleapplevelup.activity.onBoarding
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
-import android.widget.ImageView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager.widget.ViewPager
 import com.brainXTech.sampleapplevelup.R
 import com.brainXTech.sampleapplevelup.Utils.SharedPreferenceHelper
-import com.brainXTech.sampleapplevelup.activity.MainActivity
 import com.brainXTech.sampleapplevelup.adapters.OnBoardingPageAdapter
 import com.brainXTech.sampleapplevelup.databinding.ActivityOnBoardingBinding
 import kotlinx.android.synthetic.main.activity_on_boarding.*
@@ -84,9 +80,7 @@ class OnBoardingActivity : FragmentActivity(), View.OnClickListener,
 
 
     private fun setLocalVariables() {
-        sharedPreference=SharedPreferenceHelper().also {
-            it.setSharedPreference(applicationContext)
-        }
+        sharedPreference=SharedPreferenceHelper.getInstance(this)
     }
 
     private fun setBindings() {

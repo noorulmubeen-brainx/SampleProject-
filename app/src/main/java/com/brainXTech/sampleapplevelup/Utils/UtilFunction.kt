@@ -6,14 +6,14 @@ import android.content.Intent
 object UtilFunction {
 
 
-    fun gotoActivityWithFinish(currentContext: Activity,activityClass: Class<Any>){
-        val value = Intent (currentContext, activityClass::class.java)
+    fun gotoActivityWithFinish(currentContext: Activity,cls:Class<*>){
+        val value = Intent (currentContext, cls)
         currentContext.startActivity(value)
         currentContext.finish()
     }
 
-    fun gotoActivity(currentContext: Activity,activityClass: Class<Any>){
-        val value = Intent (currentContext, activityClass::class.java)
+    fun gotoActivity(currentContext: Activity,cls:Class<*>){
+        val value = Intent (currentContext, cls)
         currentContext.startActivity(value)
     }
 }
