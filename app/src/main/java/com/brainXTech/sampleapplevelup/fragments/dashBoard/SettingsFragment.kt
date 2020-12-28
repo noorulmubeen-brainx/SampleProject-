@@ -11,6 +11,7 @@ import android.widget.Button
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.observe
 import com.afollestad.materialdialogs.MaterialDialog
 import com.brainXTech.sampleapplevelup.R
 import com.brainXTech.sampleapplevelup.Utils.UtilFunction
@@ -49,11 +50,12 @@ class SettingsFragment : Fragment(), View.OnClickListener {
 //    PrivateMethods
 
     private fun setObserver() {
-        settingsViewModel = ViewModelProvider(this).get(SettingsViewModel::class.java)
-        settingsViewModel.dialogueToShow.observe(viewLifecycleOwner, showConfirmationDialogCallBack)
-        settingsViewModel.dialogueToShow.observe(viewLifecycleOwner, showConfirmationDialogCallBack)
-        settingsViewModel.loading.observe(viewLifecycleOwner, showLoading)
-        settingsViewModel.gotoLogin.observe(viewLifecycleOwner, gotoLogin)
+        settingsViewModel = ViewModelProvider(this).get(SettingsViewModel::class.java).apply {
+            dialogueToShow.observe(viewLifecycleOwner, showConfirmationDialogCallBack)
+            dialogueToShow.observe(viewLifecycleOwner, showConfirmationDialogCallBack)
+            loading.observe(viewLifecycleOwner, showLoading)
+            gotoLogin.observe(viewLifecycleOwner, gotoLoginScreen)
+        }
     }
 
     private fun showDialog() {
@@ -92,7 +94,7 @@ class SettingsFragment : Fragment(), View.OnClickListener {
         }
 
     }
-    private val gotoLogin = Observer<Boolean> {
+    private val gotoLoginScreen = Observer<Boolean> {
         if (it) {
             UtilFunction.gotoActivityWithFinish(requireActivity(), LoginActivity::class.java)
         }

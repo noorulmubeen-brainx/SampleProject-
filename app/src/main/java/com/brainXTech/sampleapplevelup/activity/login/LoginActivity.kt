@@ -41,9 +41,11 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         loginBinding = DataBindingUtil.setContentView(this, R.layout.activity_login)
         loginBinding.lifecycleOwner = this
         loginBinding.viewModel = loginViewModel
-        loginViewModel.isShowing.observe(this, showHidePasswordCallBack)
-        loginViewModel.moveToFirstTimePassword.observe(this, moveToNextScreen)
-        loginViewModel.loading.observe(this, showProgress)
+        loginViewModel.also {
+            it.isShowing.observe(this, showHidePasswordCallBack)
+            it.moveToFirstTimePassword.observe(this, moveToNextScreen)
+            it.loading.observe(this, showProgress)
+        }
     }
 
     //    endregion

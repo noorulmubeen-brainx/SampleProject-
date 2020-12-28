@@ -71,11 +71,13 @@ class LoginViewModel(app: Application) : BaseViewModel(app) {
 
 
     private fun callApiSignIn() {
-        apiRequestBody.clear()
-        apiRequestBody.put(ApiConstants.SIGNIN_BODY_EMAIL, email.value)
-        apiRequestBody.put(ApiConstants.SIGNIN_BODY_PASSWORD, password.value)
-        apiRequestBody.put(ApiConstants.SIGNIN_BODY_APP_PLATFORM, ApplicationConstants.APP_TYPE)
-        apiRequestBody.put(ApiConstants.SIGNIN_BODY_APP_VERSION, ApplicationConstants.APP_VERSION)
+        apiRequestBody.apply {
+            clear()
+            put(ApiConstants.SIGNIN_BODY_EMAIL, email.value)
+            put(ApiConstants.SIGNIN_BODY_PASSWORD, password.value)
+            put(ApiConstants.SIGNIN_BODY_APP_PLATFORM, ApplicationConstants.APP_TYPE)
+            put(ApiConstants.SIGNIN_BODY_APP_VERSION, ApplicationConstants.APP_VERSION)
+        }
         UserAPIConnection.signInUser(apiRequestBody, signInLister)
     }
 

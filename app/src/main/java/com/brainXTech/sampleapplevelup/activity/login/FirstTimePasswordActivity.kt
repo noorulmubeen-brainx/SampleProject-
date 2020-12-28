@@ -40,11 +40,10 @@ class FirstTimePasswordActivity : AppCompatActivity(),View.OnClickListener {
         firstTimeBinding =
             DataBindingUtil.setContentView(this, R.layout.activity_first_time_password)
         firstTimeBinding.lifecycleOwner = this
-        firstTimeBinding.viewModel = firstTimeViewModel
-        firstTimeViewModel.moveToHome.observe(this, moveToHome)
-        firstTimeViewModel.loading.observe(this, setProgressbar)
-
-
+        firstTimeBinding.viewModel = firstTimeViewModel.also {
+            it.moveToHome.observe(this, moveToHome)
+            it.loading.observe(this, setProgressbar)
+        }
     }
 
     private fun moveTOHomeScreen() {

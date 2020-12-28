@@ -24,38 +24,21 @@ class MainActivity : AppCompatActivity() {
         super.onStart()
         val helper: SharedPreferenceHelper = SharedPreferenceHelper.getInstance(this)
         if (helper.getIfFirstTime()) {
-            moveToOnBoarding()
+            UtilFunction.gotoActivity(this, OnBoardingActivity::class.java)
         }
         else{
             if(helper.getUser()==null)
-                moveToLogin()
+                UtilFunction.gotoActivityWithFinish(this, LoginActivity::class.java)
             else {
                 if (helper.getUser()!!.firstLogin) {
-                    moveToSetPasswordFirstTime()
+                    UtilFunction.gotoActivityWithFinish(this, FirstTimePasswordActivity::class.java)
+
                 } else {
-                    moveToHomeScreen()
+                    UtilFunction.gotoActivityWithFinish(this, HomeActivity::class.java)
                 }
             }
         }
     }
 
     //endregion
-//region PrivateMethods
-    private fun moveToHomeScreen() {
-        UtilFunction.gotoActivityWithFinish(this, HomeActivity::class.java)
-    }
-
-
-    private fun moveToSetPasswordFirstTime() {
-        UtilFunction.gotoActivityWithFinish(this,FirstTimePasswordActivity::class.java)
-    }
-
-    private fun moveToLogin() {
-        UtilFunction.gotoActivityWithFinish(this,LoginActivity::class.java)
-    }
-
-    private fun moveToOnBoarding() {
-        UtilFunction.gotoActivity(this,OnBoardingActivity::class.java)
-    }
-//    endregion
 }
