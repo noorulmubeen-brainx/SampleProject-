@@ -5,8 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import com.brainXTech.sampleapplevelup.R
 import com.brainXTech.sampleapplevelup.databinding.OnBoardingFragmentBinding
@@ -33,9 +31,18 @@ class OnBoardingFirstFragment(private val currentIndex: Int) : Fragment() {
         super.onStart()
 
         when (currentIndex) {
-            0 -> setFirstOnBoarding()
-            1 -> setSecondOnBoarding()
-            2 -> setThirdOnBoarding()
+            0 -> setOnBoarding(
+                R.drawable.on_board_first_screen_image,
+                getString(R.string.first_onboarding_heading)
+            )
+            1 -> setOnBoarding(
+                R.drawable.ic_second_onboarding_fragment,
+                getString(R.string.second_onboarding_screen_heading)
+            )
+            2 -> setOnBoarding(
+                R.drawable.ic_third_onboarding_fragment,
+                getString(R.string.third_on_boarding_heading)
+            )
         }
 
 
@@ -45,19 +52,10 @@ class OnBoardingFirstFragment(private val currentIndex: Int) : Fragment() {
     //    endregion
 
 //    region Private method
-    private fun setThirdOnBoarding() {
-        imageView.setBackgroundResource(R.drawable.ic_third_onboarding_fragment)
-        headingText.text = getString(R.string.third_on_boarding_heading)
-    }
 
-    private fun setSecondOnBoarding() {
-        imageView.setBackgroundResource(R.drawable.ic_second_onboarding_fragment)
-        headingText.text = getString(R.string.second_onboarding_screen_heading)
-    }
-
-    private fun setFirstOnBoarding() {
-        imageView.setBackgroundResource(R.drawable.on_board_first_screen_image)
-        headingText.text = getString(R.string.first_onboarding_heading)
+    private fun setOnBoarding(fragmentImage: Int, string: String) {
+        imageView.setBackgroundResource(fragmentImage)
+        headingText.text = string
     }
 //    endregion
 

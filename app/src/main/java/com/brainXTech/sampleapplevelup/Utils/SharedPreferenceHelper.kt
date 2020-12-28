@@ -5,21 +5,40 @@ import android.content.SharedPreferences
 import com.brainXTech.sampleapplevelup.ModelClasses.User
 import com.google.gson.Gson
 
-class SharedPreferenceHelper {
+class SharedPreferenceHelper(context: Context) {
 
 
     //    region Properties
     private val APP_NAME = "SampleLevelUp"
+    private val mUUSpFile = "SampleLevelUpFile"
     private val IS_FIRST_TIME = "IsFirstTimeApp"
-    private lateinit var sharedPref: SharedPreferences
+    private var sharedPref: SharedPreferences
     private val USER ="currentUser"
 //    endregion
 
-    //    region Initialize
-    fun setSharedPreference(context: Context) {
-        sharedPref = context.getSharedPreferences(APP_NAME, Context.MODE_PRIVATE)
+    //region Static Members
+    companion object {
+        //region Properties
+        private var sharedPreferenceHelper: SharedPreferenceHelper? = null
+        //endregion
+        //region private method
+        fun getInstance(context: Context): SharedPreferenceHelper {
+            if (sharedPreferenceHelper == null) {
+                sharedPreferenceHelper = SharedPreferenceHelper(context)
+            }
+            return sharedPreferenceHelper as SharedPreferenceHelper
+        }
+        //endregion
     }
-// endregion
+    //endregion
+//    lifecycle methods
+    init {
+        sharedPref = context.getSharedPreferences(
+            APP_NAME, Context.MODE_PRIVATE
+        )
+    }
+//endregion
+
 
     //    region getValues
     fun getIfFirstTime(): Boolean {
@@ -30,7 +49,7 @@ class SharedPreferenceHelper {
         val user: User?
         if(sharedPref.getString(USER,"")=="")
             return null
-        user = gson.fromJson(sharedPref?.getString(USER, ""), User::class.java)
+        user = gson.fromJson(sharedPref.getString(USER, ""), User::class.java)
         return user
     }
 //    endregion
@@ -48,7 +67,7 @@ class SharedPreferenceHelper {
         val gson = Gson()
         val json = gson.toJson(user)
 
-        val editor = sharedPref?.edit()
+        val editor = sharedPref.edit()
         editor?.putString(USER, json)
         editor?.apply()
     }

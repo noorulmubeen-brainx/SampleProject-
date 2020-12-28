@@ -21,6 +21,24 @@
     <string name="powered_by">POWERED BY</string>
     <string name="email_not_valid">Please enter a valid Email</string>
     <string name="password_not_correct">Please enter a valid Password</string>
+    <string name="password_do_not_match">Passwords did not matched</string>
     <string name="set_password_first_time">User need to set password for first time</string>
-    <string name="no_need_to_set_password">User have set the password first time</string>
+    <string name="no_need_to_set_password">User do not need to set the password first time</string>
+    <string name="your_password_has_been_changed_successfully">Your password has been changed Successfully</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="welcome_only">Welcome</string>
+    <string name="quot_you_can_meke_money_or_you_can_make_excuses_which_do_you_prefer_quot">\"You can meke Money Or You can make Excuses.Which do you prefer?\"</string>
+    <string name="by_tom_ferry">By Tom Ferry</string>
+    <string name="home">Home</string>
+    <string name="notiification">Notification</string>
+    <string name="settings">Settings</string>
+    <string name="logout">Logout</string>
+    <string name="do_today">Do Today</string>
+    <string name="activities_and_tips">Activities and Tips</string>
+    <string name="track_it">Track It</string>
+    <string name="plan">Plan</string>
+    <string name="training">Training</string>
+    <string name="say_and_share"><![CDATA[Say & Share]]></string>
+    <string name="are_you_sure_you_want_to_logout">Are you sure you want to Logout?</string>
+    <string name="cancel">Cancel</string>
 </resources>
